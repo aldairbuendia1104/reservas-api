@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS citas (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre_cliente VARCHAR(100) NOT NULL,
+    telefono VARCHAR(20) NOT NULL,
+    servicio VARCHAR(100) NOT NULL,
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
+    estado ENUM('pendiente', 'confirmada', 'cancelada')
+        NOT NULL DEFAULT 'pendiente',
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_citas_fecha_hora_estado (fecha, hora, estado)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
